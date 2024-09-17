@@ -1,4 +1,13 @@
+
+import React from 'react'
 import { useState , useEffect } from "react";
+import {
+  isMobile,
+  isTablet,
+  isDesktop,
+  browserName,
+  osName,
+} from 'react-device-detect';
 
 export default function Test(){
     const [os, setOS] = useState('');
@@ -21,14 +30,18 @@ export default function Test(){
       }
     }, []);
   
-    return (
+    return <>
+    (
       <div>
         <h1>Your Operating System is: {os}</h1>
       </div>
-    );
+      <div>
+      {isMobile && <p>You are using a mobile device.</p>}
+      {isTablet && <p>You are using a tablet.</p>}
+      {isDesktop && <p>You are using a desktop device.</p>}
+      <p>Browser: {browserName}</p>
+      <p>Operating System: {osName}</p>
+    </div>
+    )
+    </> 
   };
-
-
-
-
-
